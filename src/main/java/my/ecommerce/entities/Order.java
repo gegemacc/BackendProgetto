@@ -35,5 +35,5 @@ public class Order {
     private User user;
 
     @OneToMany
-    private List<CartItem> prodottiOrdinati = new LinkedList<>();
+    private List<CartItem> orderedProducts = new LinkedList<>();
 }
