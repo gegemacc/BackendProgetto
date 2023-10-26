@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+
+application:
+  security:
+    jwt:
+      secret-key: 674f6f6e532b73543855346357306f714b34786a644a38724541315151546854445538536e7a684e737a48657353454a6b6266414c55326f48774a477a654f450a4f7a50734d657861613553384c4561694b36565532773d3d
+      expiration: 86400000 # 1 day

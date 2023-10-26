@@ -1,0 +1,57 @@
+.nav{
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav h1 {
+  color:mediumspringgreen;
+  margin:0;
+  font-size:40px;
+}
+
+h1 a {
+  color:mediumspringgreen;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.nav ul {
+  display:inline-flex;
+  margin:0;
+  padding:0;
+  list-style-type:none;
+}
+
+.nav ul li {
+  padding-left:15px;
+  padding-top:15px;
+}
+
+.nav ul a {
+  text-decoration:none;
+  color:mediumspringgreen;
+  cursor:pointer;
+}
+
+.nav .nav-search {
+  flex:1;
+  display:flex;
+  margin-left:5%;
+  margin-right:5%;
+  margin-top:5px;
+}
+
+.nav .nav-search input {
+  flex:1;
+  color:mediumspringgreen;
+  border:1px solid mediumspringgreen;
+  height:39px;
+  border-right:none;
+}
+
+.nav .nav-search button {
+  color:mediumspringgreen;
+  border:1px solid mediumspringgreen;
+  height:42px;
+}
+
