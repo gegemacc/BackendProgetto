@@ -25,7 +25,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false)
-    private long id;
+    private Long id;
 
     @Column(name="first_name",nullable=false)
     private String firstName;
@@ -43,10 +43,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-
-    private String phone;
-
-    private String address;
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Cart cart;

@@ -1,7 +1,9 @@
-package my.ecommerce.security;
+package my.ecommerce.configs;
 
 import lombok.RequiredArgsConstructor;
 import my.ecommerce.enums.Role;
+import my.ecommerce.security.JwtFilter;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -32,7 +34,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register").permitAll()
                         .requestMatchers("/admin").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers("/seller").hasAuthority(Role.SELLER.name())
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

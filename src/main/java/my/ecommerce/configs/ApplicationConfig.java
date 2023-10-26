@@ -1,4 +1,4 @@
-package my.ecommerce.security;
+package my.ecommerce.configs;
 
 import lombok.RequiredArgsConstructor;
 import my.ecommerce.repositories.UserRepository;

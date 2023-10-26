@@ -1,23 +1,30 @@
 package my.ecommerce.entities;
 
+import org.springframework.data.annotation.LastModifiedBy;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import my.ecommerce.enums.Category;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
-    private long id;
+    private Long id;
 
-    @Column(name = "product_name", nullable=false)
-    private String productName;
+    @Column(nullable=false)
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Category category;
 
     private String image;
 
@@ -27,13 +34,10 @@ public class Product {
     @PositiveOrZero
     private int quantity;
 
-    @Column(nullable=false)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, updatable = false)
     private User seller;
 
-    //@Version
-    //private Long version;
 }

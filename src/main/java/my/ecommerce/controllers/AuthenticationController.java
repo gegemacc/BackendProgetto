@@ -5,8 +5,6 @@ import my.ecommerce.security.AuthenticationRequest;
 import my.ecommerce.security.AuthenticationResponse;
 import my.ecommerce.security.RegisterRequest;
 import my.ecommerce.services.AuthenticationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -23,7 +23,7 @@ public class Order {
     @Column(nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "order_date", nullable = false, updatable = false)
+    @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;
 
     @PositiveOrZero
@@ -31,9 +31,15 @@ public class Order {
     private double total;
 
     @ManyToOne
-    @JoinColumn(name = "order_user", nullable = false)
+    @JoinColumn(name = "order_user", nullable = false, updatable = false)
     private User user;
 
     @OneToMany
     private List<CartItem> orderedProducts = new LinkedList<>();
+
+    @Column(nullable = false)
+    private String address;
+
+    @Column(nullable = false)
+    private String phone;
 }
