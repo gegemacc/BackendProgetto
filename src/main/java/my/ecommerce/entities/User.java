@@ -10,7 +10,6 @@ import my.ecommerce.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(updatable = false)
     private Long id;
 
     @Column(name="first_name",nullable=false)
@@ -44,14 +42,18 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
+    private String address;
+
+    private String phone;
+
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Cart cart;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
-    private List<Product> sellingProducts = new ArrayList<>();
+    private List<Product> sellingProducts;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;

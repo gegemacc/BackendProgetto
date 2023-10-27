@@ -7,9 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.LinkedList;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Data
 @Builder
@@ -20,26 +22,25 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
-    private long id;
-
-    @Column(name = "order_date", nullable = false)
-    private LocalDateTime orderDate;
-
-    @PositiveOrZero
-    @Column(nullable = false)
-    private double total;
-
-    @ManyToOne
-    @JoinColumn(name = "order_user", nullable = false, updatable = false)
-    private User user;
+    private Long id;
 
     @OneToMany
-    private List<CartItem> orderedProducts = new LinkedList<>();
+    private List<OrderProduct> orderProducts;
+
+    @PositiveOrZero
+    private BigDecimal totalAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(nullable = false)
-    private String address;
+    private String buyerAddress;
 
     @Column(nullable = false)
-    private String phone;
+    private String buyerPhone;
+
+    @CreationTimestamp
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
 }

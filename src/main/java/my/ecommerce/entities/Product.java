@@ -1,5 +1,7 @@
 package my.ecommerce.entities;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.annotation.LastModifiedBy;
 
 import jakarta.persistence.*;
@@ -26,13 +28,13 @@ public class Product {
     @Column(nullable = false)
     private Category category;
 
+    @PositiveOrZero
+    private BigDecimal price;
+
     private String image;
 
     @PositiveOrZero
-    private double price;
-
-    @PositiveOrZero
-    private int quantity;
+    private int stock;
 
     private String description;
 

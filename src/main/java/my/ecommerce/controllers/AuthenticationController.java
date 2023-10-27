@@ -20,7 +20,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
-
+    
     @GetMapping("/logged")
     public ResponseEntity<String> isLogged() {
         return ResponseEntity.ok("Hello from secured endpoint");

@@ -4,8 +4,10 @@ package my.ecommerce.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.ArrayList;
+
+import java.math.BigDecimal;
 import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,10 +28,11 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "cart") //Aggiungere cascade
-    private List<CartItem> cartItems = new ArrayList<>();
+    private int quantity;
+    private BigDecimal grandtotal;
 
-    private double total = 0.0;
+    @OneToMany(mappedBy = "cart")
+    private List<OrderProduct> cartItems;
 
     @OneToOne
     @JoinColumn(name = "user_id")
