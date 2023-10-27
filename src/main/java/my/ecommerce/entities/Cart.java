@@ -28,8 +28,8 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int quantity;
-    private BigDecimal grandtotal;
+    private int quantity = 0;
+    private BigDecimal grandtotal = BigDecimal.valueOf(0.0);
 
     @OneToMany
     private List<OrderProduct> cartItems;
