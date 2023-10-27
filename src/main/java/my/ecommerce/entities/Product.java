@@ -1,9 +1,6 @@
 package my.ecommerce.entities;
 
 import java.math.BigDecimal;
-
-import org.springframework.data.annotation.LastModifiedBy;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -37,9 +34,5 @@ public class Product {
     private int stock;
 
     private String description;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, updatable = false)
-    private User seller;
 
 }

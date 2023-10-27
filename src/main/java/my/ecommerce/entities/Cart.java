@@ -31,7 +31,7 @@ public class Cart {
     private int quantity;
     private BigDecimal grandtotal;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany
     private List<OrderProduct> cartItems;
 
     @OneToOne

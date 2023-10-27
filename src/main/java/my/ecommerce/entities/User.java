@@ -52,9 +52,6 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
-    private List<Product> sellingProducts;
-
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
