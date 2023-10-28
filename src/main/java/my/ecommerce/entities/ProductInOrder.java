@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "order_products")
-public class OrderProduct {
+@Table(name = "products_in_order")
+public class ProductInOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

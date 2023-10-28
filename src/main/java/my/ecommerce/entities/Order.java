@@ -25,7 +25,7 @@ public class Order {
     private Long id;
 
     @OneToMany
-    private List<OrderProduct> products;
+    private List<ProductInOrder> products;
 
     @PositiveOrZero
     private BigDecimal totalAmount;

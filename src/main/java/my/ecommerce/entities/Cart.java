@@ -32,7 +32,7 @@ public class Cart {
     private BigDecimal grandtotal = BigDecimal.valueOf(0.0);
 
     @OneToMany
-    private List<OrderProduct> cartItems;
+    private List<ProductInOrder> items;
 
     @OneToOne
     @JoinColumn(name = "user_id")
