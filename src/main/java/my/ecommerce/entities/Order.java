@@ -24,23 +24,19 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    private List<ProductInOrder> products;
-
-    @PositiveOrZero
-    private BigDecimal totalAmount;
+    @OneToOne
+    private Cart cart;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(nullable = false)
-    private String buyerAddress;
+    private String address;
 
     @Column(nullable = false)
-    private String buyerPhone;
+    private String phone;
 
     @CreationTimestamp
-    @Column(name = "order_date")
+    @Column(name = "order_date", updatable = false)
     private LocalDateTime orderDate;
 }

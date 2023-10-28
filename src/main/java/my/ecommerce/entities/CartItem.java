@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "products_in_order")
-public class ProductInOrder {
+@Table(name = "cart_items")
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,13 +25,6 @@ public class ProductInOrder {
 
     @Min(1)
     private int quantity;
-
-    @PositiveOrZero
-    private BigDecimal subtotal;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 
     @ManyToOne
     private Cart cart;

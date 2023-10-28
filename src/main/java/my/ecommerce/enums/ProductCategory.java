@@ -1,9 +1,10 @@
 package my.ecommerce.enums;
 
-public enum Category {
+public enum ProductCategory {
     ELECTRONICS,
     CLOTHING,
     TOYS,
     HOME,
-    BOOK
+    BOOK,
+    OTHER
 }

@@ -1,10 +1,11 @@
 package my.ecommerce.repositories;
 
 import my.ecommerce.entities.Product;
-import my.ecommerce.entities.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface ProductRepository extends JpaRepository<Product, Long> {
-
-
+    
+    Optional<Product> findById(Long id);
 }

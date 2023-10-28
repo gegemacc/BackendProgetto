@@ -20,7 +20,6 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -42,10 +41,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
-    private String address;
-
-    private String phone;
-
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Cart cart;
 
@@ -55,7 +50,6 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
     @Override
-
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
