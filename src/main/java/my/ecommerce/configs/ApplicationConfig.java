@@ -2,6 +2,7 @@ package my.ecommerce.configs;
 
 import lombok.RequiredArgsConstructor;
 import my.ecommerce.repositories.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

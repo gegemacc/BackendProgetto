@@ -1,16 +1,11 @@
 package my.ecommerce.services;
 
-import my.ecommerce.dtos.UserDTO;
 import my.ecommerce.entities.User;
 import my.ecommerce.enums.Role;
 import my.ecommerce.repositories.UserRepository;
 import my.ecommerce.security.ChangePasswordRequest;
-
 import java.security.Principal;
-import java.util.List;
-
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,6 +42,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Object findAll(Role role, Pageable pageable) {
+    public Page<User> findAll(Role role, Pageable pageable) {
+        return userRepository.findAllByRoleEquals(role, pageable);
     }
+
 }
