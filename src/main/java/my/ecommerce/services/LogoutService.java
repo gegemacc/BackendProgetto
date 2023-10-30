@@ -1,4 +1,4 @@
-package my.ecommerce.security;
+package my.ecommerce.services;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,17 +1,12 @@
-package my.ecommerce.entities;
+package my.ecommerce.dtos;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import my.ecommerce.entities.Cart;
+import my.ecommerce.entities.Product;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "cart_item")
-public class CartItem {
+public class CartItemDTO {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,4 +20,5 @@ public class CartItem {
 
     @ManyToOne
     private Cart cart;
+
 }

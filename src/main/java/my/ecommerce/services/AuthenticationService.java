@@ -8,7 +8,6 @@ import my.ecommerce.repositories.TokenRepository;
 import my.ecommerce.repositories.UserRepository;
 import my.ecommerce.security.AuthenticationRequest;
 import my.ecommerce.security.AuthenticationResponse;
-import my.ecommerce.security.JwtService;
 import my.ecommerce.security.RegisterRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,11 +1,15 @@
 package my.ecommerce.services;
 
+import my.ecommerce.dtos.UserDTO;
 import my.ecommerce.entities.User;
 import my.ecommerce.enums.Role;
 import my.ecommerce.repositories.UserRepository;
 import my.ecommerce.security.ChangePasswordRequest;
 import java.security.Principal;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,9 +22,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
 
-    
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
     public User saveUser(@RequestBody User u) {
         return userRepository.save(u);
@@ -42,8 +46,12 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Page<User> findAll(Role role, Pageable pageable) {
-        return userRepository.findAllByRoleEquals(role, pageable);
+    public Page<UserDTO> findAll(int page, int size) {
+        return userRepository.findAllByRoleEquals(Role.USER, PageRequest.of(page, size)).map(this::mapToDto);
+    }
+
+    private UserDTO mapToDto(User user) {
+        return modelMapper.map(user,UserDTO.class);
     }
 
 }

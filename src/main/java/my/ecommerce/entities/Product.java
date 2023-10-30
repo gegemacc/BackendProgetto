@@ -1,8 +1,7 @@
 package my.ecommerce.entities;
 
-import java.math.BigDecimal;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +9,15 @@ import lombok.NoArgsConstructor;
 import my.ecommerce.enums.ProductCategory;
 import my.ecommerce.enums.ProductStatus;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,4 +47,9 @@ public class Product {
 
     @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime created;
+
+    private LocalDateTime updated;
 }

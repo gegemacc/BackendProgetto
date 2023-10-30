@@ -21,8 +21,6 @@ public class Token {
     @Column(unique = true)
     private String token;
 
-    private Date date;
-
     private boolean expired;
 
     private boolean revoked;

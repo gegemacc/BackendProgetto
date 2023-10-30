@@ -14,14 +14,14 @@ import my.ecommerce.security.ChangePasswordRequest;
 import my.ecommerce.services.UserService;
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping
 @CrossOrigin
 @RequiredArgsConstructor
 public class UserController {
     
     private final UserService userService;
 
-    @PutMapping("/changePassword")
+    @PutMapping("/profile/changePassword")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request, Principal connectedUser) {
         userService.changePassword(request, connectedUser);
         return ResponseEntity.ok().build();
