@@ -29,21 +29,4 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getCategoryById(id));
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<?> addCategory(@RequestBody CategoryCreateDTO categoryCreateDTO) {
-        categoryService.addCategory(categoryCreateDTO);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id}/edit")
-    public ResponseEntity<?> editCategory(@PathVariable("id") Long id, @RequestBody CategoryCreateDTO categoryCreateDTO) {
-        categoryService.editCategory(id,categoryCreateDTO);
-        return ResponseEntity.ok().build();
-    }
-    @DeleteMapping ("/{id}/delete")
-    public ResponseEntity<?>deleteCategory(@PathVariable("id") Long id) {
-        categoryService.deleteCategory(id);
-        return ResponseEntity.ok().build();
-    }
-
 }

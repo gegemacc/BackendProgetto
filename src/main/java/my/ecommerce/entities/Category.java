@@ -26,6 +26,6 @@ public class Category {
 
     @OneToMany
     @JsonIgnore
-    private List<Product> product;
+    private List<Product> products;
 
 }

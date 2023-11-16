@@ -24,6 +24,7 @@ import java.util.Map;
 public class ProductController {
 
     private final ProductService productService;
+
     @GetMapping("/products")
     public ResponseEntity<Page<Product>> getProducts(@RequestParam int page, @RequestParam int size, @RequestParam(defaultValue = "") String searchKey) throws IllegalStateException {
         return ResponseEntity.ok().body(productService.findAll(page, size, searchKey));
@@ -35,21 +36,6 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
-    }
-    @PostMapping("/products/new")
-    public ResponseEntity<Product> addProduct(@RequestBody ProductCreateDTO productCreateDTO) {
-        return ResponseEntity.ok().body(productService.addProduct(productCreateDTO));
-    }
-
-    @PutMapping("/products/{id}/edit")
-    public ResponseEntity<ProductCreateDTO> editProduct(@PathVariable("id") Long id, @Valid @RequestBody ProductCreateDTO productCreateDTO) {
-        return ResponseEntity.ok(productService.editProduct(id, productCreateDTO));
-    }
-
-    @DeleteMapping("/products/{id}/delete")
-    public ResponseEntity<?> deleteProduct(@PathVariable("id") Long id) {
-        productService.deleteProduct(id);
-        return ResponseEntity.ok().build();
     }
 
 }

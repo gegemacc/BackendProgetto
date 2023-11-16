@@ -52,8 +52,6 @@ public class User implements UserDetails {
     @JoinColumn(name = "user_id")
     private List<Order> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Token> tokens = new ArrayList<>();
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

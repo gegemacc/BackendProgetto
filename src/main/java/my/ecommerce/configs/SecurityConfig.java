@@ -28,7 +28,6 @@ public class SecurityConfig {
 
     private final JwtFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
-    private final LogoutHandler logoutHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,7 +35,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register","/products/**","/categories").permitAll()
+                        .requestMatchers("/login", "/register","/products/**","/categories/**").permitAll()
                         .requestMatchers("/profile/**","/role","/cart/**").hasAnyAuthority(Role.USER.name(),Role.ADMIN.name())
                         .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
                         .anyRequest()
