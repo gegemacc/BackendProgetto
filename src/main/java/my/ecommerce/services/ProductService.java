@@ -1,48 +1,47 @@
 package my.ecommerce.services;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import my.ecommerce.dtos.ProductDTO;
-import my.ecommerce.dtos.UserDTO;
+import my.ecommerce.dtos.ProductCreateDTO;
+import my.ecommerce.entities.Category;
 import my.ecommerce.entities.Product;
 import my.ecommerce.enums.ProductStatus;
+import my.ecommerce.repositories.CategoryRepository;
 import my.ecommerce.repositories.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
 
-    public ProductDTO addProduct(ProductDTO productDTO) {
+    public Product addProduct(ProductCreateDTO productCreateDTO) {
         try {
-            Product product = mapToEntityCreation(productDTO);
+            Product product = mapToEntityCreation(productCreateDTO);
             product.setStatus(ProductStatus.AVAILABLE);
             product.setCreated(LocalDateTime.now());
-            return mapToDto(productRepository.save(product));
+            return productRepository.save(product);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    private Product mapToEntityCreation(ProductDTO productDTO) {
-        return modelMapper.map(productDTO, Product.class);
+    private Product mapToEntityCreation(ProductCreateDTO productCreateDTO) {
+        return modelMapper.map(productCreateDTO, Product.class);
     }
 
-    public ProductDTO editProduct(Long id, ProductDTO patch) {
+    public ProductCreateDTO editProduct(Long id, ProductCreateDTO patch) {
         Product product = findProduct(id);
         try {
             product.setName(patch.getName());
@@ -54,7 +53,6 @@ public class ProductService {
             product.setUpdated(LocalDateTime.now());
             return mapToDto(productRepository.save(product));
         } catch (Exception e) {
-            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -68,16 +66,24 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
     }
 
-    public Page<ProductDTO> findAll(int page, int size) {
-        return productRepository.findAll(PageRequest.of(page, size)).map(this::mapToDto);
+    public Page<Product> findAll(int page, int size, String searchKey) {
+        if(searchKey == "") {
+            return productRepository.findAll(PageRequest.of(page, size));
+        } else {
+            return productRepository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchKey,searchKey,PageRequest.of(page,size));
+        }
+
     }
 
-    private ProductDTO mapToDto(Product product) {
-        return modelMapper.map(product,ProductDTO.class);
+    private ProductCreateDTO mapToDto(Product product) {
+        return modelMapper.map(product, ProductCreateDTO.class);
     }
 
-    public ProductDTO getProductById(Long id) {
-        Product product = findProduct(id);
-        return mapToDto(product);
+    public Product getProductById(Long id) {
+        return findProduct(id);
+    }
+
+    public List<Product> findAllByCategory(Long id) {
+        return productRepository.findAllByCategoryId(id);
     }
 }

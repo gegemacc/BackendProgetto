@@ -6,8 +6,10 @@ import lombok.Data;
 @Data
 public class OrderDTO {
 
-    @NotNull
-    private Long id;
-
+    private String phone;
+    private String state;
+    private String region;
+    private String city;
+    private String street;
 
 }

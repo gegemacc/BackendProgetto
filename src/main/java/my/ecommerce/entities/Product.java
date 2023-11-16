@@ -1,23 +1,27 @@
 package my.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import my.ecommerce.enums.ProductCategory;
 import my.ecommerce.enums.ProductStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,18 +30,18 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ProductCategory category;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
-    @PositiveOrZero
+    @DecimalMin(value = "0", inclusive = false)
     @Column(nullable = false)
     private BigDecimal price;
 
     @Column(nullable = false)
     private String image;
 
-    @PositiveOrZero
+    @Min(value = 0)
     @Column(nullable = false)
     private int stock;
 
@@ -52,4 +56,7 @@ public class Product {
     private LocalDateTime created;
 
     private LocalDateTime updated;
+
+    @Version
+    private Long version;
 }

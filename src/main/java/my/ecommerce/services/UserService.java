@@ -6,11 +6,11 @@ import my.ecommerce.enums.Role;
 import my.ecommerce.repositories.UserRepository;
 import my.ecommerce.security.ChangePasswordRequest;
 import java.security.Principal;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -46,8 +46,9 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Page<UserDTO> findAll(int page, int size) {
-        return userRepository.findAllByRoleEquals(Role.USER, PageRequest.of(page, size)).map(this::mapToDto);
+
+    public List<UserDTO> findAllUsers() {
+        return userRepository.findAllByRoleEquals(Role.USER).stream().map(this::mapToDto).toList();
     }
 
     private UserDTO mapToDto(User user) {
