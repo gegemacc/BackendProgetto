@@ -1,11 +1,8 @@
 package my.ecommerce.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +11,6 @@ import my.ecommerce.enums.ProductStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -49,7 +45,7 @@ public class Product {
     @Column(nullable = false)
     private ProductStatus status;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "text")
     private String description;
 
     @Column(nullable = false, updatable = false)

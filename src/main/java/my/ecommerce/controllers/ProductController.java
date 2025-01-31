@@ -1,21 +1,13 @@
 package my.ecommerce.controllers;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import my.ecommerce.dtos.ProductCreateDTO;
 import my.ecommerce.entities.Product;
 import my.ecommerce.services.ProductService;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping

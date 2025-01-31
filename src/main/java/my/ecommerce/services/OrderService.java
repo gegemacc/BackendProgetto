@@ -3,16 +3,12 @@ package my.ecommerce.services;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import my.ecommerce.dtos.CheckoutDTO;
 import my.ecommerce.dtos.OrderDTO;
 import my.ecommerce.entities.*;
 import my.ecommerce.enums.ProductStatus;
 import my.ecommerce.exceptions.PriceChangedException;
 import my.ecommerce.exceptions.ProductNotAvailableException;
 import my.ecommerce.repositories.*;
-import org.springframework.cglib.core.Local;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +22,8 @@ import java.util.*;
 public class OrderService {
 
     private final CartRepository cartRepository;
-    private final CartItemRepository cartItemRepository;
     private final CartService cartService;
     private final ProductRepository productRepository;
-    private final ProductRepository userRepository;
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
 

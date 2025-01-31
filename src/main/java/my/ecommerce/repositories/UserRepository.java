@@ -3,8 +3,6 @@ package my.ecommerce.repositories;
 
 import my.ecommerce.entities.User;
 import my.ecommerce.enums.Role;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

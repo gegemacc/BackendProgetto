@@ -3,10 +3,8 @@ package my.ecommerce.services;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import my.ecommerce.dtos.ProductCreateDTO;
-import my.ecommerce.entities.Category;
 import my.ecommerce.entities.Product;
 import my.ecommerce.enums.ProductStatus;
-import my.ecommerce.repositories.CategoryRepository;
 import my.ecommerce.repositories.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -23,7 +21,6 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
 
     public Product addProduct(ProductCreateDTO productCreateDTO) {

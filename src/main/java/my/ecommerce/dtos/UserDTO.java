@@ -6,8 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import my.ecommerce.enums.Role;
 
-import java.util.List;
-
 @Data
 public class UserDTO {
 

@@ -50,6 +50,7 @@ public class User implements UserDetails {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @Builder.Default
     private List<Order> orders = new ArrayList<>();
 
     @Override

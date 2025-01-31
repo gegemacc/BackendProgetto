@@ -3,7 +3,6 @@ package my.ecommerce.controllers;
 import lombok.RequiredArgsConstructor;
 import my.ecommerce.dtos.CategoryCreateDTO;
 import my.ecommerce.dtos.ProductCreateDTO;
-import my.ecommerce.entities.Product;
 import my.ecommerce.security.RegisterRequest;
 import my.ecommerce.services.AuthenticationService;
 import my.ecommerce.services.CategoryService;
@@ -28,26 +27,31 @@ public class DemoController {
     @GetMapping("/demo")
     public ResponseEntity<?> addProduct() {
         List<String> categories = new ArrayList<>();
-        categories.add("Elettronica");
-        categories.add("Abbigliamento");
-        categories.add("Libri");
-        categories.add("Casa");
-        categories.add("Giochi");
+        categories.add("John Deere");
+        categories.add("Fendt");
+        categories.add("New Holland");
+        categories.add("Laverda");
+        categories.add("Case");
         CategoryCreateDTO categoryCreateDTO = new CategoryCreateDTO();
         for(String categoryName: categories) {
             categoryCreateDTO.setName(categoryName);
             this.categoryService.addCategory(categoryCreateDTO);
         }
         List<ProductCreateDTO> products = new ArrayList<>();
-        products.add(ProductCreateDTO.builder().name("Iphone 15 128GB").category(categoryService.getCategoryById(1L)).image("https://i.ibb.co/cx7TJ59/1.jpg").stock(3).price(BigDecimal.valueOf(899.99)).description("iPhone 15 ha un robusto design realizzato in vetro a infusione di colore e in alluminio.").build());
-        products.add(ProductCreateDTO.builder().name("Maglietta Nike").category(categoryService.getCategoryById(2L)).image("https://i.ibb.co/wwLrn00/2.webp").stock(2).price(BigDecimal.valueOf(19.99)).description("T-Shirt Nike colore nero e taglia S").build());
-        products.add(ProductCreateDTO.builder().name("1984").category(categoryService.getCategoryById(3L)).image("https://i.ibb.co/fvqkRGX/3.jpg").stock(1).price(BigDecimal.valueOf(11.50)).description("Il potere non è un mezzo, è un fine").build());
-        products.add(ProductCreateDTO.builder().name("Quadro").category(categoryService.getCategoryById(4L)).image("https://i.ibb.co/jL6VQ8H/5.jpg").stock(5).price(BigDecimal.valueOf(35.70)).description("Dimensioni totali: 200 x 100 cm (lunghezza x altezza).").build());
-        products.add(ProductCreateDTO.builder().name("LEGO 60368 City Esploratore Artico").category(categoryService.getCategoryById(5L)).image("https://i.ibb.co/TPjJLfq/4.jpg").stock(4).price(BigDecimal.valueOf(129.00)).description("Il set LEGO City Esploratore Artico include: una grande nave giocattolo galleggiante.").build());
+ 
+        products.add(ProductCreateDTO.builder().name("John Deere 6M").category(categoryService.getCategoryById(1L)).image("https://i.ibb.co/7Xjsth5/6110M.png").stock(3).price(BigDecimal.valueOf(180000)).description("Potenza: 125 kW (170 CV), Capacità serbatoio carburante: 230 litri, Velocità massima: 40 km/h, Opzioni di pneumatici e di carico frontale disponibili").build());
+        products.add(ProductCreateDTO.builder().name("John Deere 7R").category(categoryService.getCategoryById(1L)).image("https://i.ibb.co/LkJ5gPm/7r-350-r2g069326-lsc-large-large-ad1754c2b0164dc888db449d1f87bd957bb09461.jpg").stock(3).price(BigDecimal.valueOf(280000)).description("Potenza: 241 kW (330 CV), Capacità serbatoio carburante: 630 litri, Velocità massima: 50 km/h, Opzioni di pneumatici e di pesi anteriori disponibili").build());
+        products.add(ProductCreateDTO.builder().name("John Deere S700").category(categoryService.getCategoryById(1L)).image("https://i.ibb.co/7RvgfS6/john-deere-s700-combine.jpg").stock(3).price(BigDecimal.valueOf(350000)).description("Potenza: 399 kW (543 CV), Capacità serbatoio cereali: 14,100 litri, Larghezza di taglio: 9 metri, Opzioni di doppie ruote e di estensioni della trebbia disponibili").build());
+        products.add(ProductCreateDTO.builder().name("Fendt 300 Vario").category(categoryService.getCategoryById(2L)).image("https://i.ibb.co/c2fCXs6/LV-FENDT-300-VARIO-1.jpg").stock(3).price(BigDecimal.valueOf(120000)).description("Potenza: 82 kW (112 CV), Capacità serbatoio carburante: 160 litri, Velocità massima: 40 km/h, Opzioni di pneumatici e di carico frontale disponibili").build());
+        products.add(ProductCreateDTO.builder().name("Fendt 700 Vario").category(categoryService.getCategoryById(2L)).image("https://i.ibb.co/j44cbjp/large-fendt-700-gen6.jpg").stock(3).price(BigDecimal.valueOf(220000)).description("Potenza: 184 kW (250 CV), Capacità serbatoio carburante: 430 litri, Velocità massima: 50 km/h, Opzioni di pneumatici e di pesi anteriori disponibili").build());
+        products.add(ProductCreateDTO.builder().name("New Holland CR 7.90").category(categoryService.getCategoryById(3L)).image("https://i.ibb.co/vv6PjG0/mietitrebbie-cr-7-90-scr-new-holland-1.webp").stock(3).price(BigDecimal.valueOf(350000)).description("Potenza: 330 kW (449 CV), Capacità serbatoio cereali: 12,330 litri, Larghezza di taglio: 7.5 metri, Opzioni di doppie ruote e di estensioni della trebbia disponibili").build());
+        products.add(ProductCreateDTO.builder().name("New Holland T5").category(categoryService.getCategoryById(3L)).image("https://i.ibb.co/4Z6ryVN/t5-dynamic-auto-command-the-blue-driving-experience.webp").stock(3).price(BigDecimal.valueOf(100000)).description("Potenza: 81 kW (110 CV), Capacità serbatoio carburante: 150 litri, Velocità massima: 40 km/h, Opzioni di pneumatici e di carico frontale disponibili").build());
+        products.add(ProductCreateDTO.builder().name("Laverda M300 MCS").category(categoryService.getCategoryById(4L)).image("https://i.ibb.co/r7kSsfg/LAVERDA-M300-Powerflow-Copia.jpg").stock(3).price(BigDecimal.valueOf(120000)).description("Potenza: 210 kW (286 CV), Capacità serbatoio cereali: 6,200 litri, Larghezza di taglio: 5.4 metri, Opzioni di doppie ruote e di estensioni della trebbia disponibili").build());
+        products.add(ProductCreateDTO.builder().name("Case IH Quadtrac 620 ").category(categoryService.getCategoryById(5L)).image("https://i.ibb.co/37wV9QX/50140202-61cc-87cb.jpg").stock(3).price(BigDecimal.valueOf(350000)).description("Potenza: 455 kW (620 CV), Capacità serbatoio carburante: 1,300 litri, Velocità massima: 40 km/h, Opzioni di pneumatici e di carico frontale disponibili").build());
         for(ProductCreateDTO product: products) {
             this.productService.addProduct(product);
         }
-        RegisterRequest admin = new RegisterRequest("Alessandro","Mendicino","admin@email.com","1234");
+        RegisterRequest admin = new RegisterRequest("Eugenio","Macchione","admin@email.com","1234");
         this.authenticationService.registerAdminDemo(admin);
         return ResponseEntity.ok().build();
     }
